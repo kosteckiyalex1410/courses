@@ -43,12 +43,12 @@ public class Role {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "crs_roles")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<User> users;
 }

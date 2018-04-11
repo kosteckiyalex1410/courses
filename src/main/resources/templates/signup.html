@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form name="user" th:action="@{/create}" th:object="${user}" method="post">
+    <div id="username"><label> New user name : <input type="text" th:field="*{username}"> </label></div>
+    <div id="password"><label> New Password : <input th:field="*{password}"> </label></div>
+    <div id="confirm"><label> Confirm password : <input th:field="*{confirmPassword}"></label></div>
+    <div> <input type="submit" value="Sign Up"/></div>
+</form>
+<script>
+    function validatePassword() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirm').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'matching';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+</script>
+
+</body>
+</html>

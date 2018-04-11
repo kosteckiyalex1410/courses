@@ -8,11 +8,11 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "username")
-    private String username;
+    String username;
 
     public Long getId() {
         return id;
@@ -55,12 +55,12 @@ public class User {
     }
 
     @Column(name = "password")
-    private String password;
+    String password;
 
     @Transient
     transient String confirmPassword;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "crs_users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
