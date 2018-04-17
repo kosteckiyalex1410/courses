@@ -1,9 +1,10 @@
-package com.courses.demo.services;
+package com.courses.demo.services.impl;
 
 import com.courses.demo.dao.RoleDao;
 import com.courses.demo.dao.UserDao;
 import com.courses.demo.model.Role;
 import com.courses.demo.model.User;
+import com.courses.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

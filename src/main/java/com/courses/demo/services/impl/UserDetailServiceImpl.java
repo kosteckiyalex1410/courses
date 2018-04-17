@@ -1,4 +1,4 @@
-package com.courses.demo.services;
+package com.courses.demo.services.impl;
 
 import com.courses.demo.dao.UserDao;
 import com.courses.demo.model.User;
