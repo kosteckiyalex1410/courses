@@ -1,0 +1,52 @@
+CREATE TABLE IF NOT EXISTS crs_users
+(
+  id SERIAL NOT NULL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS crs_roles
+(
+  id SERIAL NOT NULL PRIMARY KEY ,
+  name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS crs_user_roles
+(
+  user_id INT NOT NULL,
+  role_id INT NOT NULL,
+
+  FOREIGN KEY (user_id) REFERENCES crs_users(id),
+  FOREIGN KEY (role_id) REFERENCES crs_roles(id)
+);
+INSERT INTO crs_users VALUES (1, 'alex', 'Must@ng+9');
+INSERT INTO crs_roles VALUES (1, 'ROLE_USER');
+INSERT INTO crs_roles VALUES (2, 'ROLE_ADMIN');
+
+INSERT INTO crs_user_roles VALUES (1, 2);
+
+CREATE TABLE crs_course_instances
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    status CRS_SCHEMA.CRS_COURSE_STATUS_LV,
+    course_template_id INTEGER,
+    CONSTRAINT crs_course_instances_user_id_fkey FOREIGN KEY (user_id) REFERENCES crs_users (id),
+    CONSTRAINT crs_course_instances_course_template_id_fkey FOREIGN KEY (course_template_id) REFERENCES crs_course_templates (id)
+);
+CREATE TABLE crs_course_templates
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(255),
+    description VARCHAR(255),
+    video VARCHAR(255)
+);
+CREATE TABLE crs_course_user_inst
+(
+    user_id INTEGER,
+    instance_id INTEGER,
+    CONSTRAINT crs_course_user_inst_user_id_fkey FOREIGN KEY (user_id) REFERENCES crs_users (id),
+    CONSTRAINT crs_course_user_inst_instance_id_fkey FOREIGN KEY (instance_id) REFERENCES crs_course_instances (id)
+);
+

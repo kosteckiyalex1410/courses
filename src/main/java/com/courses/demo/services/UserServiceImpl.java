@@ -5,7 +5,6 @@ import com.courses.demo.dao.UserDao;
 import com.courses.demo.model.Role;
 import com.courses.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleDao.getOne(2L));
+        roles.add(roleDao.getOne(1L));
         user.setRoles(roles);
         userDao.save(user);
     }

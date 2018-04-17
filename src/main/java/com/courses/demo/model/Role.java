@@ -1,7 +1,5 @@
 package com.courses.demo.model;
 
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -49,6 +47,6 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<User> users;
 }

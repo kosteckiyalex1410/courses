@@ -32,7 +32,6 @@ public class UserController {
     {
         ModelAndView model = new ModelAndView("signup");
         User user = new User();
-        user.setUsername("IOIOIOIIIO");
         model.addObject("user", user);
         return model;
     }
